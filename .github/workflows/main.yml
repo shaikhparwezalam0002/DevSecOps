@@ -5,7 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  dev:
+  dev-job:
+    name: Run Dev Script
     runs-on: ubuntu-latest
 
     steps:
@@ -17,11 +18,37 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Run dev code
+      - name: Run dev.py
         run: python dev.py
 
-      - name: Run test code
+  test-job:
+    name: Run Test Script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run test.py
         run: python test.py
 
-      - name: Run prod code
+  prod-job:
+    name: Run Prod Script
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run prod.py
         run: python prod.py
